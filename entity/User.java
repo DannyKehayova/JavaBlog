@@ -1,5 +1,7 @@
 package softuniBlog.entity;
 
+import softuniBlog.repository.CategoryRepository;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,7 +18,7 @@ public class User {
     private String fullName;
 
     private String password;
-
+   private CategoryRepository categoryRepository;
     private Set<Role> roles;
     private Set<Article> articles;
     public User(String email, String fullName, String password) {

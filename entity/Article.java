@@ -1,6 +1,8 @@
 package softuniBlog.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Danny on 23.11.2016 г..
@@ -12,15 +14,18 @@ public class Article {
     private String title;
     private String content;
     private User author;
-
+    private Category category;
     public  Article(){
 
     }
 
-    public Article(String title, String content, User author) {
+    public Article(String title, String content, User author, Category category, HashSet<Tag> tags) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.category=category;
+        this.tags=tags;
+
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,10 +61,32 @@ public class Article {
     public void setAuthor(User author) {
         this.author = author;
     }
+    @ManyToOne()
+    @JoinColumn(nullable = false,name="categoryId")
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Transient
     public String getSummary(){
 
         return this.getContent().substring(0,this.getContent().length()/2)+"...";
     }
+
+    private Set<Tag> tags;
+    @ManyToMany()
+    @JoinColumn(table = "articles_tags")
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
 
 }
