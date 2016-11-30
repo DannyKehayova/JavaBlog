@@ -10,7 +10,7 @@ public class ArticleBindingModel {
     private String title;
     @NotNull
     private String content;
-
+    private Integer categoryId;
     public String getTitle() {
         return title;
     }
@@ -25,5 +25,24 @@ public class ArticleBindingModel {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+
+    public Integer getCategoryId(){
+
+        return categoryId;
+    }
+    public void setCategoryId(Integer categoryId){
+        this.categoryId=categoryId;
+    }
+
+    private String tagString;
+
+    public String getTagString() {
+        return tagString;
+    }
+
+    public void setTagString(String tagString) {
+        this.tagString = tagString;
     }
 }
